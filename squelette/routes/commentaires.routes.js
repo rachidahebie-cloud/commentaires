@@ -12,5 +12,11 @@ const express = require('express');
 const router = express.Router();
 
 // les six routes ici
+router.get('/articles/:id/commentaires', controleur.listerParArticle);
+router.post('/articles/:id/commentaires', controleur.creer);
+router.get('/commentaires', controleur.parVisiteur);
+router.get('/commentaires/:id', controleur.trouver);
+router.patch('/commentaires/:id', verifierJeton, controleur.modifier);
+router.delete('/commentaires/:id', verifierJeton, controleur.supprimer);
 
 module.exports = router;
