@@ -54,3 +54,5 @@ INSERT INTO articles (titre, categorie, auteur_id, contenu, publie, cree_le) VAL
 SELECT a.id, a.titre, au.prenom AS auteur, a.publie
 FROM articles a JOIN auteurs au ON au.id = a.auteur_id
 ORDER BY a.id;
+
+SELECT count(*) FROM articles;

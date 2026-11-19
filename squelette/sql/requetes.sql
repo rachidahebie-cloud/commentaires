@@ -21,4 +21,3 @@
 
 
 -- R6. Les trois commentaires les plus recents, avec le titre de leur article.
-
