@@ -10,6 +10,16 @@
 // const service = require('../services/commentaires.service');
 // const ErreurHttp = require('../utils/erreur-http');
 
+const service = require('../services/commentaires.service');
+
+async function lister(req, res, next) {
+  try {
+    const commentaires = await service.lister(Number(req.params.id));
+    res.status(200).json(commentaires);
+  } catch (err) {
+    next(err);
+  }
+}
 
 
-module.exports = {};
+module.exports = {lister};
