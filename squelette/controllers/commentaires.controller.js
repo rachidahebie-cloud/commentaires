@@ -33,5 +33,18 @@ async function creer(req, res, next) {
   }
 }
 
+async function parVisiteur(req, res, next) {
+  try {
+    const { nom } = req.query;
+    if (!nom) {
+      throw new ErreurHttp(400, 'NOM_MANQUANT', 'Le paramètre nom est obligatoire.');
+    }
+    const commentaires = await service.parVisiteur(nom);
+    res.status(200).json(commentaires);
+  } catch (err) {
+    next(err);
+  }
+}
 
-module.exports = {lister, creer};
+
+module.exports = {lister, creer, parVisiteur};
