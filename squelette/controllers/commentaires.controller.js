@@ -26,7 +26,7 @@ async function creer(req, res, next) {
     if (!nom || !texte) {
       throw new ErreurHttp(400, 'CHAMP_MANQUANT', 'Les champs nom et texte sont obligatoires.');
     }
-    const commentaire = await service.creer(Number(req.params.id), nom, texte);
+    const commentaire = await service.creer(Number(req.params.id), { nom, texte });
     res.status(201).json(commentaire);
   } catch (err) {
     next(err);
@@ -61,7 +61,7 @@ async function modifier(req, res, next) {
     if (!texte) {
       throw new ErreurHttp(400, 'TEXTE_MANQUANT', 'Le champ texte est obligatoire.');
     }
-    const commentaire = await service.modifier(Number(req.params.id), texte);
+    const commentaire = await service.modifier(Number(req.params.id), { texte });
     res.status(200).json(commentaire);
   } catch (err) {
     next(err);
