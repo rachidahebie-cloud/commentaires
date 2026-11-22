@@ -6,13 +6,14 @@
 // probleme, mais une route /commentaires/quelquechose placee apres /commentaires/:id ne serait jamais atteinte.
 
 const express = require('express');
-// const verifierJeton = require('../middlewares/jeton');
+const verifierJeton = require('../middlewares/jeton');
 const controleur = require('../controllers/commentaires.controller');
 
 const router = express.Router();
 
 // les six routes ici
 router.get('/articles/:id/commentaires', controleur.lister);
+router.post('/articles/:id/commentaires', controleur.creer);
 
 
 module.exports = router;

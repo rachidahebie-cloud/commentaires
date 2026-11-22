@@ -7,10 +7,9 @@
 //   4. choisir le code (200, 201 ou 204). Toute erreur part vers next(err).
 // Le controleur ne parle JAMAIS a la base : pas de pool ici, seulement le service.
 
-// const service = require('../services/commentaires.service');
-// const ErreurHttp = require('../utils/erreur-http');
-
 const service = require('../services/commentaires.service');
+const ErreurHttp = require('../utils/erreur-http');
+
 
 async function lister(req, res, next) {
   try {
@@ -21,5 +20,18 @@ async function lister(req, res, next) {
   }
 }
 
+async function creer(req, res, next) {
+  try {
+    const { nom, texte } = req.body;
+    if (!nom || !texte) {
+      throw new ErreurHttp(400, 'CHAMP_MANQUANT', 'Les champs nom et texte sont obligatoires.');
+    }
+    const commentaire = await service.creer(Number(req.params.id), nom, texte);
+    res.status(201).json(commentaire);
+  } catch (err) {
+    next(err);
+  }
+}
 
-module.exports = {lister};
+
+module.exports = {lister, creer};
