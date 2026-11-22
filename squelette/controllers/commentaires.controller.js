@@ -55,5 +55,18 @@ async function trouver(req, res, next) {
   }
 }
 
+async function modifier(req, res, next) {
+  try {
+    const { texte } = req.body;
+    if (!texte) {
+      throw new ErreurHttp(400, 'TEXTE_MANQUANT', 'Le champ texte est obligatoire.');
+    }
+    const commentaire = await service.modifier(Number(req.params.id), texte);
+    res.status(200).json(commentaire);
+  } catch (err) {
+    next(err);
+  }
+}
 
-module.exports = {lister, creer, parVisiteur, trouver};
+
+module.exports = {lister, creer, parVisiteur, trouver, modifier};
