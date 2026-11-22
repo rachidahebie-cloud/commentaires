@@ -18,11 +18,19 @@ GROUP BY a.id, a.titre
 ORDER BY a.id;
 
 -- R3. Les articles qui n'ont aucun commentaire : id, titre.
-
+SELECT a.id, a.titre
+FROM articles a
+WHERE NOT EXISTS (SELECT 1 FROM commentaires c WHERE c.article_id = a.id)
+ORDER BY a.id;
 
 -- R4. Pour chaque auteur, le nombre total de commentaires recus sur ses articles,
 --     du plus commente au moins commente.
-
+SELECT au.prenom AS auteur, COUNT(c.id) AS nb_commentaires
+FROM auteurs au
+JOIN articles a ON a.auteur_id = au.id
+JOIN commentaires c ON c.article_id = a.id
+GROUP BY au.id, au.prenom
+ORDER BY nb_commentaires DESC;
 
 -- R5. Les visiteurs (nom) qui ont commente plus d'un article.
 
