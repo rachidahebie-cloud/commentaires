@@ -46,5 +46,14 @@ async function parVisiteur(req, res, next) {
   }
 }
 
+async function trouver(req, res, next) {
+  try {
+    const commentaire = await service.trouver(Number(req.params.id));
+    res.status(200).json(commentaire);
+  } catch (err) {
+    next(err);
+  }
+}
 
-module.exports = {lister, creer, parVisiteur};
+
+module.exports = {lister, creer, parVisiteur, trouver};
