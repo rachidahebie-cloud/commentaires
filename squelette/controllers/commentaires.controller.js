@@ -68,5 +68,14 @@ async function modifier(req, res, next) {
   }
 }
 
+async function supprimer(req, res, next) {
+  try {
+    await service.supprimer(Number(req.params.id));
+    res.status(204).end();
+  } catch (err) {
+    next(err);
+  }
+}
 
-module.exports = {lister, creer, parVisiteur, trouver, modifier};
+
+module.exports = {lister, creer, parVisiteur, trouver, modifier, supprimer};
