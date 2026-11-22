@@ -4,7 +4,10 @@
 -- =============================================================================
 
 -- R1. Les commentaires de l'article 2, du plus recent au plus ancien : nom, texte.
-
+SELECT nom, texte
+FROM commentaires
+WHERE article_id = 2
+ORDER BY cree_le DESC;
 
 -- R2. Le nombre de commentaires de CHAQUE article, y compris ceux qui n'en ont aucun :
 --     id, titre, nb_commentaires.

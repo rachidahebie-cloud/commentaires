@@ -36,3 +36,6 @@ INSERT INTO commentaires (article_id, nom, texte, cree_le) VALUES
   (4, 'Lucie',  'J''ai une chaise à faire refaire, vous prenez les commandes ?', '2026-10-09T07:00:00Z'),
   (5, 'Claire', 'Aucune vis visible : comment sont fixés les caissons ?', '2026-10-16T12:22:00Z'),
   (5, 'Karim',  'Superbe travail.', '2026-10-18T17:47:00Z');
+
+
+  Select count(*) from commentaires;
